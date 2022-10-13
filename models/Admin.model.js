@@ -2,12 +2,17 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const SALT_ROUNDS = 10;
+const PASSWORD_PATERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;  
+        // should contain at least one digit
+       // should contain at least one lower case
+      // should contain at least one upper case
+   // should contain at least 8 from the mentioned characters
 
 const EMAIL_PATERN = 
 /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 
-const AdminSchema = new mongoose.Schema (
+const AdminSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -24,7 +29,7 @@ const AdminSchema = new mongoose.Schema (
         password: {
             type: String,
             required: [true, 'A password is required'],
-            match: [PASSWORD_PATERN, 'Password must contain: 8 characters, at least one letter and one number'],
+            match: [PASSWORD_PATERN, 'Password must contain: 8 characters, at least one capital letter and one number'],
             trim: true
         }        
     },

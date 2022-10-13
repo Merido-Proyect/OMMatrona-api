@@ -4,7 +4,7 @@ const CourseSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "The name of the corse is required"],
+      required: [true, "The name of the course is required"],
     },
 
     type: {
@@ -12,6 +12,14 @@ const CourseSchema = new mongoose.Schema(
       enum: ["Class", "Presencial", "On-line"],
       required: [true, "The type of course is required"],
     },
+    schedule: {
+      type: String,
+      required: [true, 'A date for schedule is required']
+    },
+    hours: {
+      type: String,
+      required: [true, 'The hours of the activity is required']
+    }
   },
   {
     toJSON: {

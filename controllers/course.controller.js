@@ -2,11 +2,12 @@ const createError = require('http-errors');
 const Course = require('../models/Course.model');
 
 
+
 //CRUD
 //READ
 module.exports.list = (req, res, next) => {
     Course.find()
-    .populate('admin')
+    
     .then( courses => {
         console.log('✔️................course created');
         res.status(201).json(courses)

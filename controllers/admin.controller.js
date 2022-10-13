@@ -1,14 +1,14 @@
 const createError = require('http-errors')
 const Admin = require("../models/Admin.model");
 
-
 //CRUD
 
 //READ
 module.exports.list = (req, res, next) => {
   Admin.find()
-    .then((Admins) => {
-      res.json(Admins);
+    .then((admins) => {
+        console.log('............................', admins);
+      res.json(admins);
     })
     .catch(next);
 };
@@ -17,20 +17,20 @@ module.exports.list = (req, res, next) => {
 //CREATE
 module.exports.create = (req, res, next) => {
   Admin.create(req.body)
-  .then(Admin => {
-    console.log('🧍‍♀️🧍‍♂️🧍..................... Admin created!')
-    res.status(201).json(Admin)})
+  .then(admin => {
+    console.log('❤️..................... admin created!')
+    res.status(201).json(admin)})
     .catch(err => console.log(err))
 };
 
 //DETAILS
 module.exports.detail = (req, res, next) => {
     Admin.findById(req.currentAdmin)              //currentAdmin
-    .then(Admin => {
-        if (!Admin) {
+    .then(admin => {
+        if (!admin) {
             next(createError(404, 'Admin not found'))
         } else {
-            res.json(Admin)
+            res.json(admin)
         }
     })
     .catch(err => console.log(err))
@@ -41,9 +41,9 @@ module.exports.update = (req, res, next) => {
     const { id } =req.params
 
     Admin.findByIdAndUpdate(id, req.body, {new: true})
-    .then(Admin => {
+    .then(admin => {
         console.log('👍......... Admin updated!')
-        res.status(201).json(Admin)
+        res.status(201).json(admin)
     })
     .catch(err => console.log(err))
 }

@@ -1,13 +1,13 @@
 const createError = require('http-errors')
 const User = require("../models/User.model");
 
-
 //CRUD
 
 //READ
 module.exports.list = (req, res, next) => {
   User.find()
     .then((users) => {
+        console.log('********************',users)
       res.json(users);
     })
     .catch(next);
