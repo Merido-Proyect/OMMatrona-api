@@ -25,7 +25,7 @@ module.exports.create = (req, res, next) => {
 
 //DETAILS
 module.exports.detail = (req, res, next) => {
-    User.findById(req.currentUser)              //currentUser
+    User.findById(req.currentUser)             
     .then(user => {
         if (!user) {
             next(createError(404, 'User not found'))
@@ -53,7 +53,8 @@ module.exports.delete = (req, res, next) => {
     const { id } = req.params
     User. findByIdAndDelete(id)
     .then(() => {
-        //NO SÉ QUE PONER AQUÍ, YA QUE NO NAVEGAMOS, NI REDIRECT DESDE AQUI... ***********************************************
+       console.log('👎..............user deleted');
+       res.status(204)
     })
     .catch(err => console.log(err))
 }

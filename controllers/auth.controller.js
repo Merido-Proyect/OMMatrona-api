@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User.model')
-const Admin = require('../models/Admin.model')
 require('dotenv')
 const passport = require('passport')
 const mongoose = require('mongoose')
@@ -16,7 +15,7 @@ module.exports.login = (req, res, next) => {
     if(!email || !password) {
         next(LoginError)
     } else {
-        User||Admin.findOne( { email })
+        User.findOne( { email })
         .then(user => {
             if (!user) {
                 next(LoginError)
@@ -59,9 +58,9 @@ module.exports.activateAccount = (req, res, next) => {
     )
     .then((user) => {
         if (user) {
-            res.status(200).json({ message: "oye que si que hay usuario venga redirige"})
+            res.status(200)
         } else {
-            res.status(301) //????????????????
+            res.status(301) 
         }
         })
         .catch(next)

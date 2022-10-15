@@ -1,9 +1,8 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require('mongoose')
+const User = require('../models/User.model')
 
-const User = require('../models/Admin.model')
-const Admin = require('../models/User.model')
 
 passport.use('google-auth'), new GoogleStrategy(
     {

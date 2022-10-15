@@ -2,7 +2,6 @@ const createError = require('http-errors');
 const Course = require('../models/Course.model');
 
 
-
 //CRUD
 //READ
 module.exports.list = (req, res, next) => {
@@ -17,7 +16,7 @@ module.exports.list = (req, res, next) => {
 
 //DETAIL
 module.exports.detail = (req, res, next) => {
-    Course.findById(req.currentCourse)   //currentCourse!!!
+    Course.findById(req.currentCourse)   
     .then(course => {
         if (!course) {
             next(createError(404, 'Course not found'))
@@ -55,7 +54,8 @@ module.exports.delete = (req, res, next) => {
     const { id } = req.params
     User. findByIdAndDelete(id)
     .then(() => {
-        //NO SÉ QUE PONER AQUÍ, YA QUE NO NAVEGAMOS, NI REDIRECT DESDE AQUI... ***********************************************
+        console.log('👎..............course deleted');
+       res.status(204)
     })
     .catch(err => console.log(err))
 }

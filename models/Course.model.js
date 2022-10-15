@@ -9,7 +9,7 @@ const CourseSchema = new mongoose.Schema(
 
     type: {
       type: String,
-      enum: ["Class", "Presencial", "On-line"],
+      enum: ["Activity", "Presencial-Course", "On-line-Course"],
       required: [true, "The type of course is required"],
     },
     schedule: {

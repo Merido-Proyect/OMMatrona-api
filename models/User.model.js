@@ -43,6 +43,10 @@ const UserSchema = new mongoose.Schema(
         'Type of user is required, select "client" or "professional"',
       ],
     },
+    isAdmin: {
+      type: Boolean,
+      default: false
+    }
   },
   {
     toJSON: {
