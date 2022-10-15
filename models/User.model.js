@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema(
       maxLength: 9,
       minLength: 9,
     },
-    user: {
+    userType: {
       type: String,
       enum: ["client", "professional"],
       required: [

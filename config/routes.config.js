@@ -22,15 +22,15 @@ router.get('/auth/google/callback', authController.loginGoogle)
 router.get('/users', usersController. list)
 router.post('/users', usersController.create)
 router.get('/users/me', authMiddleware.isAuthenticated, usersController.detail)
-router.post('/users', usersController.update)
-router.post('/users', usersController.delete)
+router.patch('/users/:id', usersController.update)
+router.delete('/users/:id', usersController.delete)
 
 
 //COURSES
 router.get('/courses', coursesController.list)
 router.post('/courses', coursesController.create)
 router.get('/courses/:id', coursesController.detail)
-router.post('/courses', coursesController.update)
-router.post('/courses', coursesController.delete)
+router.patch('/courses/:id', coursesController.update)
+router.delete('/courses/:id', coursesController.delete)
 
 module.exports = router
