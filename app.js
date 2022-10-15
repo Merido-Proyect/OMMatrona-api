@@ -58,6 +58,6 @@ data.errors= error.errors
     res.status(error.status).json(data)
 })
 
-const server = app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3001, () => {
     console.log(`server started on port ${process.env.PORT}`);
 })

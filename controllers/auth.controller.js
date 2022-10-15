@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/User.model')
 const Admin = require('../models/Admin.model')
 require('dotenv')
+const passport = require('passport')
+const mongoose = require('mongoose')
 
 
 const createError = require('http-errors')
@@ -42,4 +44,27 @@ module.exports.login = (req, res, next) => {
             }
         })
     }
+}
+
+module.exports.loginGoogle = (req, res, next) => {
+    passportlogin(req, res, next, 'google-auth')
+}
+
+module.exports.activateAccount = (req, res, next) => {
+    const token = req.params.token
+
+    User.findByIdAndUpdate(
+        { activationToken: token, active: false},
+        { active: true}
+    )
+    .then((user) => {
+        if (user) {
+            res.send.status(201, (('auth with google ok'),             //revisar este punto!!!!!
+            { user: { email: user.email },
+              message: 'You have activated your account.'  })
+        } else {
+            res.send.json //????????????????
+        }
+        })
+        .catch(next)
 }
