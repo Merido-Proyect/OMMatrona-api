@@ -59,11 +59,9 @@ module.exports.activateAccount = (req, res, next) => {
     )
     .then((user) => {
         if (user) {
-            res.send.status(201, (('auth with google ok'),             //revisar este punto!!!!!
-            { user: { email: user.email },
-              message: 'You have activated your account.'  })
+            res.status(200).json({ message: "oye que si que hay usuario venga redirige"})
         } else {
-            res.send.json //????????????????
+            res.status(301) //????????????????
         }
         })
         .catch(next)
