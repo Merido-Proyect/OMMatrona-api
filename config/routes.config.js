@@ -22,7 +22,7 @@ router.get('/auth/google/callback', authController.loginGoogle)
 //USERS
 router.get('/users', usersController. list)
 router.post('/users', usersController.create)
-router.get('/users/me', authMiddleware.isAuthenticated, usersController.detail)
+router.get('/users/:id', authMiddleware.isAuthenticated, usersController.detail)
 router.patch('/users/:id', usersController.update)
 router.delete('/users/:id', usersController.delete)
 
