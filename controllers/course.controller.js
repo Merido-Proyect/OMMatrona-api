@@ -16,7 +16,7 @@ module.exports.list = (req, res, next) => {
 
 //DETAIL
 module.exports.detail = (req, res, next) => {
-    Course.findById(req.currentCourse)   
+    Course.findById(req.currentUser)   
     .then(course => {
         if (!course) {
             next(createError(404, 'Course not found'))
@@ -52,7 +52,7 @@ module.exports.update = (req, res, next) => {
 //DELETE
 module.exports.delete = (req, res, next) => {
     const { id } = req.params
-    User. findByIdAndDelete(id)
+    Course. findByIdAndDelete(id)
     .then(() => {
         console.log('👎..............course deleted');
        res.status(204)

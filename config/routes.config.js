@@ -4,6 +4,7 @@ const coursesController = require('../controllers/course.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const passport = require('passport')
 const authController = require('../controllers/auth.controller')
+const blogController = require('../controllers/blog.controller')
 
 const SCOPES = ['profile', 'email']
 
@@ -32,5 +33,13 @@ router.post('/courses', coursesController.create)
 router.get('/courses/:id', coursesController.detail)
 router.patch('/courses/:id', coursesController.update)
 router.delete('/courses/:id', coursesController.delete)
+
+
+//BLOG
+router.get('/blogs', blogController.list )
+router.get('/blogs/:id', blogController.detail)
+router.post('/blogs', blogController.create)
+router.patch('/blogs/:id', blogController.update)
+router.delete('/blogs/:id', blogController.delete)
 
 module.exports = router
