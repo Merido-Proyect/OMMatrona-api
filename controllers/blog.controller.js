@@ -15,14 +15,14 @@ module.exports.list = (req, res, next) => {
 
 //detail
 module.exports.detail = (req, res, next) => {
- Blog.findById(req.currentUser)
+     Blog.findById(req.params.id)
  .then(blog => {
-    if (!blog) {
+      if (!blog) {
         next(createError(404, 'blog not found'))
     } else {
-        res.json(blog)
+        res.status(201).json(blog)
     }
- })
+ }).catch(next)
 }
 
 //create

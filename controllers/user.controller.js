@@ -8,7 +8,7 @@ module.exports.list = (req, res, next) => {
   User.find()
     .then((users) => {
         console.log('********************',users)
-      res.json(users);
+      res.status(201).json(users);
     })
     .catch(next);
 };
