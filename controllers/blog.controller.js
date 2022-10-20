@@ -29,7 +29,7 @@ module.exports.detail = (req, res, next) => {
 module.exports.create = (req, res, next) => {
     const data = {
         ...req.body,
-        user: req.currentUser
+        prof: req.currentUser
     }
 
     Blog.create(data)

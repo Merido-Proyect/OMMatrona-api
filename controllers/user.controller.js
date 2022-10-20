@@ -25,6 +25,18 @@ module.exports.create = (req, res, next) => {
 
 //DETAILS
 module.exports.detail = (req, res, next) => {
+    User.findById(req.params.id)             
+    .then(user => {
+        if (!user) {
+            next(createError(404, 'User not found'))
+        } else {
+            res.json(user)
+        }
+    })
+    .catch(err => console.log(err))
+}
+
+module.exports.getCurrentUser = (req, res, next) => {
     User.findById(req.currentUser)             
     .then(user => {
         if (!user) {
