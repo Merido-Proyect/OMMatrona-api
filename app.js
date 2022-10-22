@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -8,7 +9,7 @@ const jwt = require('jsonwebtoken')
 
 
 const app = express()
-require('dotenv').config()
+app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://locahost:3000' }))
 require('./config/db.config')
 
 

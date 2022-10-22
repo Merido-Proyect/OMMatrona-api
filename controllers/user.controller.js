@@ -8,7 +8,7 @@ module.exports.list = (req, res, next) => {
   User.find()
     .then((users) => {
         console.log('********************',users)
-      res.json(users);
+      res.status(201).json(users);
     })
     .catch(next);
 };
@@ -20,11 +20,23 @@ module.exports.create = (req, res, next) => {
   .then(user => {
     console.log('🧍‍♀️🧍‍♂️🧍..................... user created!')
     res.status(201).json(user)})
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 };
 
 //DETAILS
 module.exports.detail = (req, res, next) => {
+    User.findById(req.params.id)             
+    .then(user => {
+        if (!user) {
+            next(createError(404, 'User not found'))
+        } else {
+            res.json(user)
+        }
+    })
+    .catch( err => next(err))
+}
+
+module.exports.getCurrentUser = (req, res, next) => {
     User.findById(req.currentUser)             
     .then(user => {
         if (!user) {
@@ -33,7 +45,7 @@ module.exports.detail = (req, res, next) => {
             res.json(user)
         }
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //UPDATE
@@ -45,7 +57,7 @@ module.exports.update = (req, res, next) => {
         console.log('👍......... user updated!')
         res.status(201).json(user)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //DELETE
@@ -56,5 +68,5 @@ module.exports.delete = (req, res, next) => {
        console.log('👎..............user deleted');
        res.status(204)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }

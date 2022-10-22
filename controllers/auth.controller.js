@@ -33,7 +33,7 @@ module.exports.login = (req, res, next) => {
                             process.env.SECRET,
 
                             {
-                                expiresIn: '1h'
+                                expiresIn: '8h'
                             }
                         )
 

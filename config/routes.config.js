@@ -22,7 +22,8 @@ router.get('/auth/google/callback', authController.loginGoogle)
 //USERS
 router.get('/users', usersController. list)
 router.post('/users', usersController.create)
-router.get('/users/me', authMiddleware.isAuthenticated, usersController.detail)
+router.get('/users/me', authMiddleware.isAuthenticated, usersController.getCurrentUser)
+router.get('/users/:id', authMiddleware.isAuthenticated, usersController.detail)
 router.patch('/users/:id', usersController.update)
 router.delete('/users/:id', usersController.delete)
 
@@ -38,7 +39,7 @@ router.delete('/courses/:id', coursesController.delete)
 //BLOG
 router.get('/blogs', blogController.list )
 router.get('/blogs/:id', blogController.detail)
-router.post('/blogs', blogController.create)
+router.post('/blogs', authMiddleware.isAuthenticated, blogController.create)
 router.patch('/blogs/:id', blogController.update)
 router.delete('/blogs/:id', blogController.delete)
 

@@ -4,7 +4,6 @@ require('dotenv')
 
 module.exports.isAuthenticated = (req, res, next) => {
     const authorization = req.header('Authorization')
-    console.log(authorization, req.headers)
     if (authorization) {
         const [ type, token] = authorization.split(' ')
 

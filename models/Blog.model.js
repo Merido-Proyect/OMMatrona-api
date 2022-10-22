@@ -15,6 +15,10 @@ const BlogSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    keyWords: {
+      type: [String], 
+      required: [true, 'Keywords are required ']
+    },
     post: {
       type: String,
     },

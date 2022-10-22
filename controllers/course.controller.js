@@ -9,14 +9,14 @@ module.exports.list = (req, res, next) => {
     
     .then( courses => {
         console.log('✔️................course created');
-        res.status(201).json(courses)
+        res.status(200).json(courses)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //DETAIL
 module.exports.detail = (req, res, next) => {
-    Course.findById(req.currentUser)   
+    Course.findById(req.params.id)   
     .then(course => {
         if (!course) {
             next(createError(404, 'Course not found'))
@@ -24,7 +24,7 @@ module.exports.detail = (req, res, next) => {
             res.json(course)
         }
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //CREATE
@@ -34,7 +34,7 @@ module.exports.create = (req, res, next) => {
         console.log('.......................course created');
         res.status(201).json(course)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //UPDATE
@@ -46,7 +46,7 @@ module.exports.update = (req, res, next) => {
         console.log('✔️.............. course updated!')
         res.status(201).json(course)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //DELETE
@@ -57,6 +57,6 @@ module.exports.delete = (req, res, next) => {
         console.log('👎..............course deleted');
        res.status(204)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
