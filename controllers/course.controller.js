@@ -9,14 +9,14 @@ module.exports.list = (req, res, next) => {
     
     .then( courses => {
         console.log('✔️................course created');
-        res.status(201).json(courses)
+        res.status(200).json(courses)
     })
     .catch( err => next(err))
 }
 
 //DETAIL
 module.exports.detail = (req, res, next) => {
-    Course.findById(req.currentUser)   
+    Course.findById(req.params.id)   
     .then(course => {
         if (!course) {
             next(createError(404, 'Course not found'))
