@@ -20,7 +20,7 @@ module.exports.create = (req, res, next) => {
   .then(user => {
     console.log('🧍‍♀️🧍‍♂️🧍..................... user created!')
     res.status(201).json(user)})
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 };
 
 //DETAILS
@@ -33,7 +33,7 @@ module.exports.detail = (req, res, next) => {
             res.json(user)
         }
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 module.exports.getCurrentUser = (req, res, next) => {
@@ -45,7 +45,7 @@ module.exports.getCurrentUser = (req, res, next) => {
             res.json(user)
         }
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //UPDATE
@@ -57,7 +57,7 @@ module.exports.update = (req, res, next) => {
         console.log('👍......... user updated!')
         res.status(201).json(user)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //DELETE
@@ -68,5 +68,5 @@ module.exports.delete = (req, res, next) => {
        console.log('👎..............user deleted');
        res.status(204)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }

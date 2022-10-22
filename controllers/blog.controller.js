@@ -36,7 +36,7 @@ module.exports.create = (req, res, next) => {
     .then( blogPost => {
         res.status(201).json(blogPost)
     })
-    .catch(next)
+    .catch( err => next(err))
 }
 
 //update
@@ -48,9 +48,8 @@ module.exports.update = (req, res, next) => {
             console.log('******* ', blog);
             res.status(201).json(blog)
         })
-        .catch(err => console.error(err))
-}
-
+        .catch( err => next(err))
+    }
 //delete
 module.exports.delete = (req, res, next) => {
     const {id} = req.params
@@ -58,5 +57,5 @@ module.exports.delete = (req, res, next) => {
     .then(() => {
         console.log('blog entry deleted');
         res.status(204)
-    }).catch( err => console.error(err))
+    }).catch( err => next(err))
 }

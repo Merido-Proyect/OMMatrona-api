@@ -11,7 +11,7 @@ module.exports.list = (req, res, next) => {
         console.log('✔️................course created');
         res.status(201).json(courses)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //DETAIL
@@ -24,7 +24,7 @@ module.exports.detail = (req, res, next) => {
             res.json(course)
         }
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //CREATE
@@ -34,7 +34,7 @@ module.exports.create = (req, res, next) => {
         console.log('.......................course created');
         res.status(201).json(course)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //UPDATE
@@ -46,7 +46,7 @@ module.exports.update = (req, res, next) => {
         console.log('✔️.............. course updated!')
         res.status(201).json(course)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
 //DELETE
@@ -57,6 +57,6 @@ module.exports.delete = (req, res, next) => {
         console.log('👎..............course deleted');
        res.status(204)
     })
-    .catch(err => console.log(err))
+    .catch( err => next(err))
 }
 
