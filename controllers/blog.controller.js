@@ -25,6 +25,23 @@ module.exports.detail = (req, res, next) => {
  }).catch(next)
 }
 
+//search by KeyWords
+module.exports.search = (req, res, next) => {
+    const { keyWords } = req.body
+    console.log('****************************************************** buscar');
+    Blog.find(keyWords)
+    console.log('________________________',keyWords)
+    .then((search) => {
+        console.log(search)
+        if (!search) {
+            next(createError(404, 'palabra clave no encontrada, blog no disponible sobre eso'))
+        } else{
+        res.status(201).json(search)
+        }
+    })
+    .catch(next)
+}
+
 //create
 module.exports.create = (req, res, next) => {
     const data = {
@@ -55,7 +72,6 @@ module.exports.delete = (req, res, next) => {
     const {id} = req.params
     Blog.findByIdAndDelete(id)
     .then(() => {
-        console.log('blog entry deleted');
-        res.status(204)
+        res.status(204).send('OK blog deleted')
     }).catch( err => next(err))
 }

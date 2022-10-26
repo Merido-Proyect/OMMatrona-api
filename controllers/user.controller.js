@@ -66,7 +66,7 @@ module.exports.delete = (req, res, next) => {
     User. findByIdAndDelete(id)
     .then(() => {
        console.log('👎..............user deleted');
-       res.status(204)
+       res.status(204).send('OK blog deleted')
     })
     .catch( err => next(err))
 }

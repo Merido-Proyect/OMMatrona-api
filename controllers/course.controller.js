@@ -55,7 +55,7 @@ module.exports.delete = (req, res, next) => {
     Course. findByIdAndDelete(id)
     .then(() => {
         console.log('👎..............course deleted');
-       res.status(204)
+        res.status(204).send('OK blog deleted')
     })
     .catch( err => next(err))
 }
