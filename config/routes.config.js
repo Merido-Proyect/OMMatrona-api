@@ -39,7 +39,7 @@ router.delete('/courses/:id', coursesController.delete)
 //BLOG
 router.get('/blogs', blogController.list )
 router.get('/blogs/:id', blogController.detail)
-router.get('/blogs/search/:id', blogController.search)
+router.get('/blogs/search/:keyword', blogController.search)
 router.post('/blogs', authMiddleware.isAuthenticated, blogController.create)
 router.patch('/blogs/:id', blogController.update)
 router.delete('/blogs/:id', blogController.delete)

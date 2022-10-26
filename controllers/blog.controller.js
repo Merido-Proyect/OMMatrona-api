@@ -27,19 +27,18 @@ module.exports.detail = (req, res, next) => {
 
 //search by KeyWords
 module.exports.search = (req, res, next) => {
-    const { keyWords } = req.body
-    console.log('****************************************************** buscar');
-    Blog.find(keyWords)
-    console.log('________________________',keyWords)
-    .then((search) => {
-        console.log(search)
-        if (!search) {
-            next(createError(404, 'palabra clave no encontrada, blog no disponible sobre eso'))
-        } else{
-        res.status(201).json(search)
-        }
-    })
-    .catch(next)
+    const { keyword } = req.params
+
+    Blog.find({ keyWords: keyword.trim().toLowerCase() })
+        .then((search) => {
+            console.log(search)
+            if (!search) {
+                next(createError(404, 'palabra clave no encontrada, blog no disponible sobre eso'))
+            } else{
+            res.status(201).json(search)
+            }
+        })
+        .catch(next)
 }
 
 //create
