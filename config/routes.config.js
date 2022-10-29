@@ -5,6 +5,7 @@ const authMiddleware = require('../middlewares/auth.middleware')
 const passport = require('passport')
 const authController = require('../controllers/auth.controller')
 const blogController = require('../controllers/blog.controller')
+const fileUploader = require('../config/cloudinary.config')
 
 const SCOPES = ['profile', 'email']
 
@@ -30,7 +31,7 @@ router.delete('/users/:id', usersController.delete)
 
 //COURSES
 router.get('/courses', coursesController.list)
-router.post('/courses', coursesController.create)
+router.post('/courses', fileUploader.single("image").coursesController.create)
 router.get('/courses/:id', coursesController.detail)
 router.patch('/courses/:id', coursesController.update)
 router.delete('/courses/:id', coursesController.delete)
@@ -40,7 +41,7 @@ router.delete('/courses/:id', coursesController.delete)
 router.get('/blogs', blogController.list )
 router.get('/blogs/:id', blogController.detail)
 router.get('/blogs/search/:keyword', blogController.search)
-router.post('/blogs', authMiddleware.isAuthenticated, blogController.create)
+router.post('/blogs', authMiddleware.isAuthenticated, fileUploader.single("image").blogController.create)
 router.patch('/blogs/:id', blogController.update)
 router.delete('/blogs/:id', blogController.delete)
 
