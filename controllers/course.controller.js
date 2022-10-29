@@ -29,6 +29,10 @@ module.exports.detail = (req, res, next) => {
 
 //CREATE
 module.exports.create = (req, res, next) => {
+    if (req.file) {
+        req.body.image = req.file.path
+    }
+
     Course.create(req.body)
     .then( course => {
         console.log('.......................course created');
