@@ -61,11 +61,13 @@ module.exports.create = (req, res, next) => {
 
 //update
 module.exports.update = (req, res, next) => {
+    if (req.file) {
+        req.body.image = req.file.path
+    }
+
     const {id} = req.params
-    console.log('******* ', req.body)
     Blog.findByIdAndUpdate(id, req.body, {new:true})
         .then(blog => {
-            console.log('******* ', blog);
             res.status(201).json(blog)
         })
         .catch( err => next(err))

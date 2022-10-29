@@ -43,6 +43,9 @@ module.exports.create = (req, res, next) => {
 
 //UPDATE
 module.exports.update = (req, res, next) => {
+    if (req.file) {
+        req.body.image = req.file.path
+    }
     const { id } = req.params
 
     Course.findByIdAndUpdate(id, req.body, {new: true})

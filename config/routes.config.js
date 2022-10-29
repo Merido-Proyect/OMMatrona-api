@@ -33,7 +33,7 @@ router.delete('/users/:id', usersController.delete)
 router.get('/courses', coursesController.list)
 router.post('/courses', fileUploader.single("image"), coursesController.create)
 router.get('/courses/:id', coursesController.detail)
-router.patch('/courses/:id', coursesController.update)
+router.patch('/courses/:id', fileUploader.single("image"), coursesController.update)
 router.delete('/courses/:id', coursesController.delete)
 
 
@@ -42,7 +42,7 @@ router.get('/blogs', blogController.list )
 router.get('/blogs/:id', blogController.detail)
 router.get('/blogs/search/:keyword', blogController.search)
 router.post('/blogs', authMiddleware.isAuthenticated, fileUploader.single("image"), blogController.create)
-router.patch('/blogs/:id', blogController.update)
+router.patch('/blogs/:id', fileUploader.single("image"),  blogController.update)
 router.delete('/blogs/:id', blogController.delete)
 
 module.exports = router
