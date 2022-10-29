@@ -43,6 +43,10 @@ module.exports.search = (req, res, next) => {
 
 //create
 module.exports.create = (req, res, next) => {
+    if (req.file) {
+        req.body.image = req.file.path
+    }
+
     const data = {
         ...req.body,
         prof: req.currentUser
