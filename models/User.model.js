@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema(
       required: [true, "A password is required"],
       match: [
         PASSWORD_PATERN,
-        "Password must contain: 8 characters, at least one capital letter and one number",
+        "Password must contain: 8 characters, at least one capital letter, one lowwercase letter and one number",
       ],
       trim: true,
     },
