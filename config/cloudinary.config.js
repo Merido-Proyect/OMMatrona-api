@@ -13,7 +13,7 @@ cloudinary.config({
     params: {
         folder: "matronas",
         allowedFormat: ['jpg', 'png'],
-        public_id: (req, file) => file.originalname.split('.')[0],
+        // public_id: (req, file) => file.originalname.split('.')[0],
       },
     });
    

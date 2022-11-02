@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const createError = require('http-errors')
 const logger = require('morgan')
 const jwt = require('jsonwebtoken')
+const multer = require('multer')
 
 
 

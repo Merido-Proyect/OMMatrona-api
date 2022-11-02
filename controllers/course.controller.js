@@ -29,13 +29,18 @@ module.exports.detail = (req, res, next) => {
 
 //CREATE
 module.exports.create = (req, res, next) => {
+    console.log('creat');
     if (req.file) {
         req.body.image = req.file.path
     }
 
-    Course.create(req.body)
+    const data = {
+        ...req.body,
+        prof: req.currentUser
+    }
+    Course.create(data)
     .then( course => {
-        console.log('.......................course created');
+        console.log('.......................course created', data);
         res.status(201).json(course)
     })
     .catch( err => next(err))
@@ -43,6 +48,7 @@ module.exports.create = (req, res, next) => {
 
 //UPDATE
 module.exports.update = (req, res, next) => {
+    console.log(req.body, req.file)
     if (req.file) {
         req.body.image = req.file.path
     }

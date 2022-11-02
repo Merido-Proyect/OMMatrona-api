@@ -7,6 +7,7 @@ const authController = require('../controllers/auth.controller')
 const blogController = require('../controllers/blog.controller')
 const fileUploader = require('../config/cloudinary.config')
 
+
 const SCOPES = ['profile', 'email']
 
 
