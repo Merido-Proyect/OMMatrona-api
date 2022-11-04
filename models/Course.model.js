@@ -19,7 +19,7 @@ const CourseSchema = new mongoose.Schema(
       required: [true, 'An brief description is required']
     },
     schedule: {
-      type: Date,
+      type: String,
       required: [true, 'A date for schedule is required']
     },
     hours: {
